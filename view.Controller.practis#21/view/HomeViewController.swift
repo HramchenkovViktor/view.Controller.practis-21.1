@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Home"
         setupUI()
         setupConstraints()
     }
@@ -27,6 +28,12 @@ class HomeViewController: UIViewController {
         CatalogButton.layer.cornerRadius = 15
         CatalogButton.addTarget(self, action: #selector(CatalogButtonTupped), for: .touchUpInside)
         
+        let settingsButton = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingsButtonTapped))
+        
+        navigationItem.rightBarButtonItem = settingsButton
+        
+        let profileButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
+        navigationItem.leftBarButtonItem = profileButton
     }
     
     func setupConstraints() {
@@ -40,6 +47,12 @@ class HomeViewController: UIViewController {
     @objc private func CatalogButtonTupped() {
         let catalogController = CatalogViewController()
         navigationController?.pushViewController(catalogController, animated: true)
+    }
+    @objc private func settingsButtonTapped() {
+        print("Settings нажата")
+    }
+    @objc private func profileButtonTapped() {
+        print("Profile нажата")
     }
 }
 
